@@ -11,6 +11,7 @@ public class HibernateTest {
 	 */
 	public static void main(String[] args) {
 		
+		
 		// TODO Auto-generated method stub
 		phone_number phone = new phone_number();
 		phone.setUserId(1);
@@ -18,15 +19,17 @@ public class HibernateTest {
 		phone.setPssword("mattPassword");
 		phone.setPhoneNumber(1234567890);
 		
-		phone.setUserId(2);
-		phone.setUserName("Mallory");
-		phone.setPssword("malloPassword");
-		phone.setPhoneNumber(2087609459);
+		phone_number phone2 = new phone_number();
+		phone2.setUserId(2);
+		phone2.setUserName("Mallory");
+		phone2.setPssword("malloPassword");
+		phone2.setPhoneNumber(2087609459);
 		
-		phone.setUserId(3);
-		phone.setUserName("Mortimer");
-		phone.setPssword("mortPassword"); 
-		phone.setPhoneNumber(2083152014);
+		phone_number phone3 = new phone_number();
+		phone3.setUserId(3);
+		phone3.setUserName("Mortimer");
+		phone3.setPssword("mortPassword"); 
+		phone3.setPhoneNumber(2083152014);
 		
 		// sessionFactory is deprecated in hibernate 4
 		
@@ -34,7 +37,16 @@ public class HibernateTest {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		session.save(phone);
+		session.save(phone2);
+		session.save(phone3);
 		session.getTransaction().commit();
+		
+		// This is how you would start a new transaction if you wanted to do something in addition.
+		
+		/*phone.setUserName("Matty");
+		session.beginTransaction();
+		session.merge(phone);
+		session.getTransaction().commit();*/
 		
 
 	}
