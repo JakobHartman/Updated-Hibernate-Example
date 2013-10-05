@@ -3,12 +3,12 @@ package com.hibernate.main;
 import com.larson.matt.HibernateUtilSingleton;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+
+import com.hibernate.test.address;
 import com.hibernate.test.phone_number;
 
 public class HibernateTest {
-	/**
-	 * @param args
-	 */
+
 	public static void main(String[] args) {
 		
 		
@@ -31,6 +31,13 @@ public class HibernateTest {
 		phone3.setPssword("mortPassword"); 
 		phone3.setPhoneNumber(2083152014);
 		
+		address address1 = new address();
+		address1.setId(1);
+		address1.setStreet_num(14030);
+		address1.setStreet("Riverside Dr.");
+		address1.setCity("Apple Valley");
+		
+		
 		// sessionFactory is deprecated in hibernate 4
 		
 		SessionFactory sessionFactory = HibernateUtilSingleton.getSessionFactory();
@@ -39,9 +46,10 @@ public class HibernateTest {
 		session.save(phone);
 		session.save(phone2);
 		session.save(phone3);
+		session.save(address1);
 		session.getTransaction().commit();
 		
-		// This is how you would start a new transaction if you wanted to do something in addition.
+		// This is how you would start a new transaction if you wanted to merge new information.
 		
 		/*phone.setUserName("Matty");
 		session.beginTransaction();
